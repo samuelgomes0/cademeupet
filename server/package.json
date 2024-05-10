@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node --transpile-only src/app.ts",
     "build": "tsc",
-    "run": "node src/index.js"
+    "start": "node build/app.js"
   },
   "keywords": [],
   "author": "",
