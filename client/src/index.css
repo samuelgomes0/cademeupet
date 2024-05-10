@@ -19,10 +19,10 @@
 
 ::selection {
   color: #000000;
-  background-color: #bfdbfe;
+  background-color: #e6e6fa;
 }
 
 :focus {
-  outline: 2px solid #bfdbfe;
+  outline: 2px solid #e6e6fa;
   outline-offset: 2px;
 }

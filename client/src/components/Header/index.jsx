@@ -8,7 +8,7 @@ export function Header() {
         <input
           type="search"
           placeholder="Buscar por nome"
-          className="bg-background text-dark rounded px-4 py-2 text-sm"
+          className="bg-background text-dark rounded px-4 py-2.5 text-sm"
         />
         <ButtonPrimary
           type="submit"

@@ -7,7 +7,7 @@ export function Footer() {
             href="https://riogrande.atende.net/cidadao"
             target="_blank"
             rel="noreferrer"
-            className="text-buttonSecondary hover:text-buttonSecondaryHover transition-colors"
+            className="text-primary hover:text-primaryHover transition-colors"
           >
             Prefeitura do Rio Grande
           </a>
@@ -17,7 +17,7 @@ export function Footer() {
             href="https://www.defesacivil.rs.gov.br/inicial"
             target="_blank"
             rel="noreferrer"
-            className="text-buttonSecondary hover:text-buttonSecondaryHover transition-colors"
+            className="text-primary hover:text-primaryHover transition-colors"
           >
             Defesa Civil do Rio Grande do Sul
           </a>
@@ -27,7 +27,7 @@ export function Footer() {
             href="https://ajudariogrande.com.br/"
             target="_blank"
             rel="noreferrer"
-            className="text-buttonSecondary hover:text-buttonSecondaryHover transition-colors"
+            className="text-primary hover:text-primaryHover transition-colors"
           >
             Ajuda Rio Grande
           </a>
@@ -39,7 +39,7 @@ export function Footer() {
           href="https://github.com/Saesel"
           target="_blank"
           rel="noreferrer"
-          className="text-buttonSecondary hover:text-buttonSecondaryHover transition-colors"
+          className="text-primary hover:text-primaryHover transition-colors"
         >
           Saesel
         </a>

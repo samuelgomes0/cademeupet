@@ -4,15 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#F7FAFC",
-        header: "#2B6CB0",
+        primary: "#7c3aed",
+        primaryHover: "#7034d5",
         dark: "#2D3748",
         light: "#CBD5E0",
-        buttonPrimary: "#48BB78",
-        buttonPrimaryHover: "#38A169",
-        buttonSecondary: "#3182CE",
-        buttonSecondaryHover: "#2B6CB0",
-        selection: "#B2F5EA",
+        header: "#4c1d95",
+        background: "#F7FAFC",
       },
     },
   },

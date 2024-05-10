@@ -3,7 +3,7 @@ export function ButtonSecondary({ type, content }) {
   return (
     <button
       type={type}
-      className="text-buttonSecondary hover:text-buttonSecondaryHover mt-4 block font-medium transition-colors"
+      className="text-primary hover:text-primaryHover mt-4 block font-medium transition-colors"
     >
       {content}
     </button>
