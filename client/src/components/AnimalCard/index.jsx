@@ -9,6 +9,7 @@ export function AnimalCard({ name, breed, status, lastSeenLocation, image }) {
         <img
           src={image}
           alt={name}
+          title={name}
           className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
