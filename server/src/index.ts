@@ -2,23 +2,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-interface User {
-  name: string;
-  email: string;
-  password: string;
-  phone: string;
-}
-
-interface Pet {
-  name: string;
-  specie: string;
-  breed?: string;
-  age: number;
-  status: string;
-  lastSeenLocation: string;
-  owner: User;
-}
-
 async function main() {}
 
 main()
