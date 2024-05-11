@@ -24,4 +24,14 @@ export class UserUseCase {
 
     return user;
   }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await this.userRepository.findByEmail(email);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    return user;
+  }
 }

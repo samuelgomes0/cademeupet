@@ -21,4 +21,19 @@ export async function userRoutes(fastify: FastifyInstance) {
       reply.code(500).send({ error: error.message });
     }
   });
+
+  fastify.get<{ Params: { email: string } }>(
+    "/:email",
+    async (request, reply) => {
+      const { email } = request.params;
+
+      try {
+        const data = await userUseCase.findByEmail(email);
+
+        return reply.code(201).send(data);
+      } catch (error) {
+        reply.code(500).send({ error: error.message });
+      }
+    }
+  );
 }

@@ -1,17 +1,19 @@
 export interface User {
   id: string;
-  name: string;
   email: string;
   password: string;
+  name: string;
   phone?: string;
+  posts?: Array<object>;
+  comments?: Array<object>;
   createdAt: Date;
   updatedAt: Date;
 }
 
 export interface UserCreate {
-  name: string;
   email: string;
   password: string;
+  name: string;
   phone?: string;
 }
 
