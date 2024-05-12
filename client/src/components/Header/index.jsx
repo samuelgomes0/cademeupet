@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ButtonPrimary } from "../ButtonPrimary";
-import { Modal } from "../Modal";
+import { RegisterModal } from "../RegisterModal";
 
 export function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +28,10 @@ export function Header() {
         content="Criar conta"
         onClick={() => changeModalState(true)}
       />
-      <Modal isOpen={isModalOpen} closeModal={() => changeModalState(false)} />
+      <RegisterModal
+        isOpen={isModalOpen}
+        closeModal={() => changeModalState(false)}
+      />
     </header>
   );
 }
