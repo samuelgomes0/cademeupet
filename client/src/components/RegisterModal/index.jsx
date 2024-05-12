@@ -16,7 +16,7 @@ export function RegisterModal({ isOpen, closeModal }) {
   } = useForm();
 
   const handleCreateAccount = (data) => {
-    console.log("Criar conta", data);
+    console.log(data);
     closeModal();
   };
 
@@ -32,7 +32,6 @@ export function RegisterModal({ isOpen, closeModal }) {
             labelInputId="name"
             labelContent="Nome"
             inputType="text"
-            isRequired={true}
             register={register}
             validationRules={{ required: "Nome é obrigatório" }}
           />
@@ -41,7 +40,6 @@ export function RegisterModal({ isOpen, closeModal }) {
             labelInputId="email"
             labelContent="E-mail"
             inputType="email"
-            isRequired={true}
             register={register}
             validationRules={{
               required: "E-mail é obrigatório",
@@ -57,7 +55,6 @@ export function RegisterModal({ isOpen, closeModal }) {
             labelInputId="password"
             labelContent="Senha"
             inputType="password"
-            isRequired={true}
             register={register}
             validationRules={{
               required: "Senha é obrigatória",
@@ -74,7 +71,6 @@ export function RegisterModal({ isOpen, closeModal }) {
             labelInputId="confirmPassword"
             labelContent="Confirmar senha"
             inputType="password"
-            isRequired={true}
             register={register}
             validationRules={{
               required: "Confirmação de senha é obrigatória",

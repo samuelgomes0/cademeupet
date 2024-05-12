@@ -2,7 +2,6 @@ export function Input({
   labelInputId,
   labelContent,
   inputType,
-  isRequired = false,
   register,
   validationRules,
   placeholder: placeholderMessage,
@@ -10,7 +9,7 @@ export function Input({
   return (
     <label htmlFor={labelInputId} className="mt-4 block text-sm font-medium">
       {labelContent}
-      {isRequired && <span className="ml-1 text-red-500">*</span>}
+      {validationRules.required && <span className="ml-1 text-red-500">*</span>}
       <input
         {...register(labelInputId, validationRules)}
         type={inputType}
