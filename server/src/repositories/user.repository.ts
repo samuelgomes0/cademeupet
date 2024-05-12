@@ -3,6 +3,7 @@ import { User, UserCreate, UserRepository } from "../interfaces/User.interface";
 
 export class UserRepositoryPrisma implements UserRepository {
   async create(data: UserCreate): Promise<User> {
+    console.log("repository", data);
     const user = await prisma.user.create({
       data: {
         name: data.name,

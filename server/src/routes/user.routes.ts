@@ -8,6 +8,10 @@ export async function userRoutes(fastify: FastifyInstance) {
   fastify.post<{ Body: UserCreate }>("/", async (request, reply) => {
     const { name, email, password, phone } = request.body;
 
+    console.log("routes", request.body);
+
+    console.log(request.body);
+
     try {
       const data = await userUseCase.create({
         name,
@@ -32,7 +36,7 @@ export async function userRoutes(fastify: FastifyInstance) {
 
         return reply.code(201).send(data);
       } catch (error) {
-        reply.code(500).send({ error: error.message });
+        reply.code(404).send({ error: error.message });
       }
     }
   );

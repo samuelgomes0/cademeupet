@@ -22,18 +22,15 @@ export async function petRoutes(fastify: FastifyInstance) {
     }
   });
 
-  fastify.get<{ Params: { name: string } }>(
-    "/:name",
-    async (request, reply) => {
-      const { name } = request.params;
+  fastify.get<{ Params: { name: string } }>(":name", async (request, reply) => {
+    const { name } = request.params;
 
-      try {
-        const data = await petUseCase.findByName(name);
+    try {
+      const data = await petUseCase.findByName(name);
 
-        return reply.code(201).send(data);
-      } catch (error) {
-        reply.code(500).send({ error: error.message });
-      }
+      return reply.code(200).send(data);
+    } catch (error) {
+      reply.code(500).send({ error: error.message });
     }
-  );
+  });
 }

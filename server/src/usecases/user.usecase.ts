@@ -11,6 +11,8 @@ export class UserUseCase {
   async create({ name, email, password, phone }: UserCreate): Promise<User> {
     const verifyIfUserExists = await this.userRepository.findByEmail(email);
 
+    console.log("usecase", name, email, password, phone);
+
     if (verifyIfUserExists) {
       throw new Error("User already exists");
     }
