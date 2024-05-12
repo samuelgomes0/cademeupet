@@ -1,5 +1,6 @@
 import { User, UserCreate, UserRepository } from "../interfaces/User.interface";
 import { UserRepositoryPrisma } from "../repositories/user.repository";
+import { encryptPassword } from "../utils";
 
 export class UserUseCase {
   private userRepository: UserRepository;
@@ -11,11 +12,11 @@ export class UserUseCase {
   async create({ name, email, password, phone }: UserCreate): Promise<User> {
     const verifyIfUserExists = await this.userRepository.findByEmail(email);
 
-    console.log("usecase", name, email, password, phone);
-
     if (verifyIfUserExists) {
       throw new Error("User already exists");
     }
+
+    password = encryptPassword(password);
 
     const user = await this.userRepository.create({
       name,
