@@ -20,4 +20,5 @@ export interface UserCreate {
 export interface UserRepository {
   create(user: UserCreate): Promise<User>;
   findByEmail(email: string): Promise<User | null>;
+  login(email: string, password: string): Promise<User | null>;
 }

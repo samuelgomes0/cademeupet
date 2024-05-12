@@ -37,4 +37,18 @@ export class UserUseCase {
 
     return user;
   }
+
+  async login(email: string, password: string): Promise<User | null> {
+    const user = await this.userRepository.login(email, password);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (user.password !== encryptPassword(password)) {
+      throw new Error("Invalid password");
+    }
+
+    return user;
+  }
 }

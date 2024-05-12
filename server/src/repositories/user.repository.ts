@@ -25,4 +25,14 @@ export class UserRepositoryPrisma implements UserRepository {
 
     return userFound || null;
   }
+
+  async login(email: string): Promise<User | null> {
+    const userFound = await prisma.user.findFirst({
+      where: {
+        email,
+      },
+    });
+
+    return userFound || null;
+  }
 }

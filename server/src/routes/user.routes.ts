@@ -40,4 +40,19 @@ export async function userRoutes(fastify: FastifyInstance) {
       }
     }
   );
+
+  fastify.post<{ Body: { email: string; password: string } }>(
+    "/login",
+    async (request, reply) => {
+      const { email, password } = request.body;
+
+      try {
+        const data = await userUseCase.login(email, password);
+
+        return reply.code(201).send(data);
+      } catch (error) {
+        reply.code(404).send({ error: error.message });
+      }
+    }
+  );
 }
