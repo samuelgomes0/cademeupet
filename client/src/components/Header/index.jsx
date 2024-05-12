@@ -11,7 +11,9 @@ export function Header() {
 
   return (
     <header className="flex items-center justify-between bg-header p-6 max-lg:flex-col max-lg:gap-6">
-      <h1 className="text-xl font-bold uppercase">Cadê meu pet?</h1>
+      <h1 className="font-patuaOne text-xl font-black uppercase">
+        Cadê meu <br></br>pet?
+      </h1>
       <form className="flex gap-4">
         <input
           type="search"

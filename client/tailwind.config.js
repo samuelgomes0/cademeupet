@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        patuaOne: ["Patua One", "serif"],
+      },
       colors: {
         primary: "#7c3aed",
         primaryHover: "#7034d5",
