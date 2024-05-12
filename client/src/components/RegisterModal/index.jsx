@@ -2,8 +2,7 @@ import { useForm } from "react-hook-form";
 import { createUser } from "../../services";
 import { ButtonPrimary } from "../ButtonPrimary";
 import { ButtonSecondary } from "../ButtonSecondary";
-import { FormErrorMessage } from "../FormErrorMessage";
-import { Input } from "../Input";
+import { RegisterInput } from "../RegisterInput";
 
 export function RegisterModal({ isOpen, closeModal }) {
   if (!isOpen) return null;
@@ -29,15 +28,16 @@ export function RegisterModal({ isOpen, closeModal }) {
           onSubmit={handleSubmit(handleCreateAccount)}
           className="relative text-dark"
         >
-          <Input
+          <RegisterInput
             labelInputId="name"
             labelContent="Nome"
             inputType="text"
             register={register}
             validationRules={{ required: "Nome é obrigatório" }}
+            errorMessage={errors.name && errors.name.message}
           />
-          {errors.name && <FormErrorMessage content={errors.name.message} />}
-          <Input
+
+          <RegisterInput
             labelInputId="email"
             labelContent="E-mail"
             inputType="email"
@@ -50,9 +50,9 @@ export function RegisterModal({ isOpen, closeModal }) {
               },
             }}
             placeholder={"email@contato.com"}
+            errorMessage={errors.email && errors.email.message}
           />
-          {errors.email && <FormErrorMessage content={errors.email.message} />}
-          <Input
+          <RegisterInput
             labelInputId="password"
             labelContent="Senha"
             inputType="password"
@@ -64,11 +64,9 @@ export function RegisterModal({ isOpen, closeModal }) {
                 message: "Senha deve ter pelo menos 8 caracteres",
               },
             }}
+            errorMessage={errors.password && errors.password.message}
           />
-          {errors.password && (
-            <FormErrorMessage content={errors.password.message} />
-          )}
-          <Input
+          <RegisterInput
             labelInputId="confirmPassword"
             labelContent="Confirmar senha"
             inputType="password"
@@ -78,11 +76,11 @@ export function RegisterModal({ isOpen, closeModal }) {
               validate: (value) =>
                 value === getValues("password") || "As senhas não coincidem",
             }}
+            errorMessage={
+              errors.confirmPassword && errors.confirmPassword.message
+            }
           />
-          {errors.confirmPassword && (
-            <FormErrorMessage content={errors.confirmPassword.message} />
-          )}
-          <Input
+          <RegisterInput
             labelInputId="phone"
             labelContent="Telefone"
             inputType="tel"
@@ -94,8 +92,8 @@ export function RegisterModal({ isOpen, closeModal }) {
               },
             }}
             placeholder={"(00) 00000-0000"}
+            errorMessage={errors.phone && errors.phone.message}
           />
-          {errors.phone && <FormErrorMessage content={errors.phone.message} />}
           <div className="mt-6 flex items-center justify-between gap-4">
             <ButtonPrimary
               content="Criar conta"

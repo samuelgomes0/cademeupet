@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { findAll } from "../../services";
 import { PetCard } from "../PetCard";
+import { Spinner } from "../Spinner";
 
 export function LostAndFound() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     findAll().then((data) => {
       setPosts(data);
+      setIsLoading(false);
     });
   }, []);
 
@@ -23,17 +26,23 @@ export function LostAndFound() {
         </p>
       </div>
       <ul className="flex flex-wrap justify-center gap-8">
-        {posts.map(({ id, imageUrl, lastSeenAt, status, pet }) => (
-          <li key={id}>
-            <PetCard
-              name={pet.name}
-              breed={pet.breed}
-              status={status}
-              lastSeenAt={lastSeenAt}
-              imageUrl={imageUrl}
-            />
-          </li>
-        ))}
+        {isLoading ? (
+          <Spinner />
+        ) : posts ? (
+          posts.map(({ id, imageUrl, lastSeenAt, status, pet }) => (
+            <li key={id}>
+              <PetCard
+                name={pet.name}
+                breed={pet.breed}
+                status={status}
+                lastSeenAt={lastSeenAt}
+                imageUrl={imageUrl}
+              />
+            </li>
+          ))
+        ) : (
+          <p>Nenhum post encontrado</p>
+        )}
       </ul>
     </section>
   );

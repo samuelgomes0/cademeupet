@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { ButtonPrimary } from "../ButtonPrimary";
+import { LoginModal } from "../LoginModal";
 import { RegisterModal } from "../RegisterModal";
 
 export function Header() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openRegisterModal, setOpenRegisterModal] = useState(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
 
-  const changeModalState = (state) => {
-    setIsModalOpen(state);
+  const changeRegisterModalState = (state) => {
+    setOpenRegisterModal(state);
+  };
+
+  const changeLoginModalState = (state) => {
+    setOpenLoginModal(state);
   };
 
   return (
@@ -26,13 +32,23 @@ export function Header() {
           className="max-md:hidden"
         />
       </form>
-      <ButtonPrimary
-        content="Criar conta"
-        onClick={() => changeModalState(true)}
-      />
+      <div className="flex gap-4">
+        <ButtonPrimary
+          content="Criar conta"
+          onClick={() => setOpenRegisterModal(true)}
+        />
+        <ButtonPrimary
+          content="Entrar"
+          onClick={() => setOpenLoginModal(true)}
+        />
+      </div>
       <RegisterModal
-        isOpen={isModalOpen}
-        closeModal={() => changeModalState(false)}
+        isOpen={openRegisterModal}
+        closeModal={() => changeRegisterModalState(false)}
+      />
+      <LoginModal
+        isOpen={openLoginModal}
+        closeModal={() => changeLoginModalState(false)}
       />
     </header>
   );

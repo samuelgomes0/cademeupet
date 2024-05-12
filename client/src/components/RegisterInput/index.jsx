@@ -1,9 +1,12 @@
-export function Input({
+import { FormErrorMessage } from "../FormErrorMessage";
+
+export function RegisterInput({
   labelInputId,
   labelContent,
   inputType,
   register,
   validationRules,
+  errorMessage,
   placeholder: placeholderMessage,
 }) {
   return (
@@ -15,8 +18,9 @@ export function Input({
         type={inputType}
         id={labelInputId}
         placeholder={placeholderMessage}
-        className="bg-inputBackground mt-1 w-full rounded px-4 py-2.5 text-sm text-dark"
+        className="mt-1 w-full rounded bg-inputBackground px-4 py-2.5 text-sm text-dark"
       />
+      {errorMessage && <FormErrorMessage content={errorMessage} />}
     </label>
   );
 }
