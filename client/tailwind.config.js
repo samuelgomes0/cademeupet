@@ -10,6 +10,7 @@ export default {
         light: "#CBD5E0",
         header: "#4c1d95",
         background: "#F7FAFC",
+        inputBackground: "#EDF2F7",
       },
     },
   },
