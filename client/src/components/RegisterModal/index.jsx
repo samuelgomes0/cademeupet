@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { createUser } from "../../services";
 import { ButtonPrimary } from "../ButtonPrimary";
 import { ButtonSecondary } from "../ButtonSecondary";
 import { FormErrorMessage } from "../FormErrorMessage";
@@ -15,8 +16,8 @@ export function RegisterModal({ isOpen, closeModal }) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useForm();
 
-  const handleCreateAccount = (data) => {
-    console.log(data);
+  const handleCreateAccount = ({ email, password, name, phone }) => {
+    createUser({ email, password, name, phone });
     closeModal();
   };
 
