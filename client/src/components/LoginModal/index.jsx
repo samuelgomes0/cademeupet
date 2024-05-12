@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { loginUser } from "../../services";
 import { ButtonPrimary } from "../ButtonPrimary";
 import { ButtonSecondary } from "../ButtonSecondary";
 import { LoginInput } from "../LoginInput";
@@ -11,7 +12,7 @@ export function LoginModal({ isOpen, closeModal }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data); // Aqui você pode integrar com seu backend ou outra lógica de autenticação
+    loginUser(data);
   };
 
   if (!isOpen) return null;
