@@ -1,19 +1,17 @@
 import axios from "axios";
 
-export async function createUser(user) {
-  const { email, password, name, phone } = user;
+export async function loginUser(userInfo) {
+  const { email, password } = userInfo;
 
   const options = {
     method: "POST",
-    url: `${import.meta.env.VITE_API_URL}/users`,
+    url: `${import.meta.env.VITE_API_URL}/users/login`,
     headers: {
       "Content-Type": "application/json",
     },
     data: {
       email,
       password,
-      name,
-      phone,
     },
   };
 
@@ -21,7 +19,10 @@ export async function createUser(user) {
     const { data } = await axios.request(options);
     return data;
   } catch (error) {
-    console.error(error);
-    return null;
+    console.error(
+      "Login failed:",
+      error.response ? error.response.data : error.message,
+    );
+    throw error;
   }
 }

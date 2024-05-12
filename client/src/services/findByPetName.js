@@ -3,7 +3,7 @@ import axios from "axios";
 export async function findByPetName(name) {
   const options = {
     method: "GET",
-    url: "http://localhost:3000/posts",
+    url: `${import.meta.env.VITE_API_URL}/posts`,
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
