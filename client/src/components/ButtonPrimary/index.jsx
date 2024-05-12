@@ -1,9 +1,14 @@
-// eslint-disable-next-line react/prop-types
-export function ButtonPrimary({ type, content, className }) {
+export function ButtonPrimary({
+  type,
+  content,
+  className,
+  onClick: handleClick,
+}) {
   return (
     <button
       type={type}
-      className={`bg-primary hover:bg-primaryHover rounded px-4 py-2 font-medium transition-colors ${className}`}
+      onClick={handleClick}
+      className={`rounded bg-primary px-4 py-2 font-medium transition-colors hover:bg-primaryHover ${className}`}
     >
       {content}
     </button>

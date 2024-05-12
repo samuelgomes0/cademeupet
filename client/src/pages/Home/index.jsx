@@ -6,7 +6,7 @@ export function Home() {
   return (
     <main>
       <Header />
-      <section className="text-dark my-8 flex flex-wrap justify-center gap-8 p-4">
+      <section className="my-8 flex flex-wrap justify-center gap-8 p-4 text-dark">
         <AnimalCard
           name="Rex"
           breed="Golden Retriever"
