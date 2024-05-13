@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { findAll } from "../../services";
 import { ButtonPrimary } from "../ButtonPrimary";
 import { PetCard } from "../PetCard";
@@ -13,6 +14,7 @@ import { Spinner } from "../Spinner";
 export function LostAndFound() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     findAll().then((data) => {
@@ -29,12 +31,16 @@ export function LostAndFound() {
         </h2>
         <p>
           Ajude a reunir famílias! Publique os detalhes aqui e aumente as
-          chances de um feliz reencontro.
+          chances de um feliz reencontro
         </p>
-        <ButtonPrimary content="Publicar" className="mt-4 text-white" />
+        <ButtonPrimary
+          content="Fazer publicação"
+          className="mt-4 text-white"
+          onClick={() => navigate("/publicar")}
+        />
       </div>
       <div className="flex flex-col items-center">
-        <h3 className="mb-4 text-lg font-bold">Últimos animais perdidos</h3>
+        <h3 className="mb-6 text-xl font-semibold">Últimos animais perdidos</h3>
         <ul className="flex flex-wrap justify-center gap-8">
           {isLoading ? (
             <Spinner />
