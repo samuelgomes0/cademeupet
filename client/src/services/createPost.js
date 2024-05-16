@@ -23,19 +23,25 @@ export async function createPost({
     throw new Error("Invalid date format");
   }
 
+  const formData = new FormData();
+  formData.append({
+    age: age || "",
+    breed: breed || "Sem raça definida",
+    lastSeenAt: lastSeenAt || "",
+    lastSeenOn: formattedDate,
+    name: name,
+    status: status,
+    type: type,
+    userId: "4f185536-47e4-457c-b7a3-205cf45765e3",
+    picture: picture[0],
+  });
+
   const options = {
     method: "POST",
     url: `${import.meta.env.VITE_API_URL}/posts`,
-    data: {
-      age,
-      breed: breed || "Sem raça definida",
-      lastSeenAt,
-      lastSeenOn: formattedDate,
-      name,
-      picture: picture[0].name,
-      status,
-      type,
-      userId: "4f185536-47e4-457c-b7a3-205cf45765e3",
+    data: formData,
+    headers: {
+      "Content-Type": "multipart/form-data",
     },
   };
 
