@@ -15,6 +15,7 @@ export async function createPost({
   }
 
   let formattedDate;
+
   try {
     formattedDate = new Date(lastSeenOn).toISOString();
   } catch (error) {
@@ -22,11 +23,9 @@ export async function createPost({
     throw new Error("Invalid date format");
   }
 
-  const apiUrl = import.meta.env.VITE_API_URL || "https://default-api-url.com";
-
   const options = {
     method: "POST",
-    url: `${apiUrl}/posts`,
+    url: `${import.meta.env.VITE_API_URL}/posts`,
     data: {
       age,
       breed: breed || "Sem raça definida",
