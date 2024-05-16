@@ -11,17 +11,30 @@ import { Spinner } from "../Spinner";
  * Users can also post new information about lost or found pets.
  * @return {JSX.Element} The LostAndFound component.
  */
-export function LostAndFound() {
+export function LostAndFound({ searchTerm }) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     findAll().then((data) => {
       setPosts(data);
+      setFilteredPosts(data);
       setIsLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = posts.filter((post) =>
+        post.pet.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(posts);
+    }
+  }, [searchTerm, posts]);
 
   return (
     <section className="my-4 flex flex-col items-center justify-center gap-8 p-4 text-dark">
@@ -44,20 +57,31 @@ export function LostAndFound() {
         <ul className="flex flex-wrap justify-center gap-8">
           {isLoading ? (
             <Spinner />
-          ) : posts.length > 0 ? (
-            posts.map(({ id, imageUrl, lastSeenAt, status, pet }) => (
-              <li key={id}>
-                <PetCard
-                  name={pet.name}
-                  breed={pet.breed}
-                  status={status}
-                  lastSeenAt={lastSeenAt}
-                  imageUrl={imageUrl}
-                />
-              </li>
-            ))
+          ) : filteredPosts && filteredPosts.length > 0 ? (
+            filteredPosts.map(
+              ({
+                id,
+                name,
+                breed,
+                status,
+                lastSeenAt,
+                lastSeenOn,
+                picture,
+              }) => (
+                <li key={id}>
+                  <PetCard
+                    name={name}
+                    breed={breed}
+                    status={status}
+                    lastSeenAt={lastSeenAt}
+                    lastSeenOn={lastSeenOn}
+                    picture={picture}
+                  />
+                </li>
+              ),
+            )
           ) : (
-            <p>Nenhum animal perdido encontrado.</p>
+            <p>Nenhum animal encontrado.</p>
           )}
         </ul>
       </div>

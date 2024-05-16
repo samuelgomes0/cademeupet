@@ -1,13 +1,23 @@
+import { formatDate } from "../../utils/formatDate";
 import { ButtonSecondary } from "../ButtonSecondary";
 
 // eslint-disable-next-line react/prop-types
-export function PetCard({ name, breed, status, lastSeenAt, imageUrl }) {
+export function PetCard({
+  name,
+  breed,
+  status,
+  lastSeenAt,
+  lastSeenOn,
+  picture,
+}) {
+  const formattedDate = formatDate(lastSeenOn);
+
   return (
     <article className="w-full max-w-[250px] rounded-lg bg-background p-4 shadow-sm transition-shadow hover:shadow-md">
       <h2 className="text-lg font-semibold">{name}</h2>
       <div className="mt-4 h-[200px] w-full overflow-hidden rounded-lg shadow-sm">
         <img
-          src={imageUrl}
+          src={picture}
           alt={name}
           title={name}
           className="h-full w-full object-cover transition-transform hover:scale-105"
@@ -22,7 +32,7 @@ export function PetCard({ name, breed, status, lastSeenAt, imageUrl }) {
         </p>
         <p className="whitespace-normal">
           <strong>Visto pela última vez:</strong>{" "}
-          {lastSeenAt ? lastSeenAt : "Não informado"}
+          {`${lastSeenAt} - ${formattedDate}`}
         </p>
       </div>
       <ButtonSecondary type="button" content="Ver detalhes" />

@@ -1,15 +1,14 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ButtonPrimary } from "../ButtonPrimary";
 
-export function Header() {
+export function Header({ onSearch }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
-  const handleSearchForPet = (event) => {
+  const handleSearch = (event) => {
     event.preventDefault();
-
-    const searchValue = event.target.value;
-
-    console.log(searchValue);
+    onSearch(searchTerm);
   };
 
   return (
@@ -20,12 +19,13 @@ export function Header() {
           pet?
         </a>
       </h1>
-      <form className="flex gap-4">
+      <form className="flex gap-4" onSubmit={handleSearch}>
         <input
           type="search"
           placeholder="Buscar por nome"
-          onChange={handleSearchForPet}
           className="rounded bg-background px-4 py-2.5 text-sm text-dark"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
         />
         <ButtonPrimary
           type="submit"
@@ -36,7 +36,7 @@ export function Header() {
       <div className="flex gap-4">
         <ButtonPrimary
           content="Criar conta"
-          onClick={() => navigate("/cadastro")}
+          onClick={() => navigate("/cadastrar")}
         />
         <ButtonPrimary content="Entrar" onClick={() => navigate("/login")} />
       </div>
