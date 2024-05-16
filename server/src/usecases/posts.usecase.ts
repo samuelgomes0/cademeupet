@@ -1,8 +1,8 @@
-import { Posts, PostsRepository } from "../interfaces/Posts.interface";
+import { Posts } from "../interfaces/Posts.interface";
 import { PostsRepositoryPrisma } from "../repositories/posts.repository";
 
 export class PostsUseCase {
-  private postsRepository: PostsRepository;
+  private postsRepository: PostsRepositoryPrisma;
 
   constructor() {
     this.postsRepository = new PostsRepositoryPrisma();
