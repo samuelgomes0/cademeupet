@@ -1,15 +1,19 @@
-import { User, UserCreate, UserRepository } from "../interfaces/User.interface";
-import { UserRepositoryPrisma } from "../repositories/user.repository";
+import {
+  Users,
+  UsersCreate,
+  UsersRepository,
+} from "../interfaces/Users.interface";
+import { UsersRepositoryPrisma } from "../repositories/users.repository";
 import { encryptPassword } from "../utils";
 
-export class UserUseCase {
-  private userRepository: UserRepository;
+export class UsersUseCase {
+  private userRepository: UsersRepository;
 
   constructor() {
-    this.userRepository = new UserRepositoryPrisma();
+    this.userRepository = new UsersRepositoryPrisma();
   }
 
-  async create({ name, email, password, phone }: UserCreate): Promise<User> {
+  async create({ name, email, password, phone }: UsersCreate): Promise<Users> {
     const verifyIfUserExists = await this.userRepository.findByEmail(email);
 
     if (verifyIfUserExists) {
@@ -28,7 +32,7 @@ export class UserUseCase {
     return user;
   }
 
-  async findByEmail(email: string): Promise<User | null> {
+  async findByEmail(email: string): Promise<Users | null> {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
@@ -38,7 +42,7 @@ export class UserUseCase {
     return user;
   }
 
-  async login(email: string, password: string): Promise<User | null> {
+  async login(email: string, password: string): Promise<Users | null> {
     const user = await this.userRepository.login(email, password);
 
     if (!user) {

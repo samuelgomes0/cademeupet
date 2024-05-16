@@ -13,50 +13,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
+model Users {
+  id        String     @id @default(uuid())
+  email     String     @unique
   password  String
   name      String
   phone     String?
-  posts     Post[]
-  comments  Comment[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  posts     Posts[]
+  comments  Comments[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 }
 
-model Pet {
-  id        String   @id @default(uuid())
-  name      String
-  type      String
-  breed     String
-  age       Int?
-  posts     Post[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Post {
-  id         String    @id @default(uuid())
+model Posts {
+  id         String     @id @default(uuid())
+  name       String
+  type       String
+  breed      String
+  age        String?
   status     String
   lastSeenAt String?
   lastSeenOn DateTime?
-  imageUrl   String
-  petId      String
-  pet        Pet       @relation(fields: [petId], references: [id])
+  picture    String
   userId     String
-  user       User      @relation(fields: [userId], references: [id])
-  comments   Comment[]
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  user       Users      @relation(fields: [userId], references: [id])
+  comments   Comments[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 }
 
-model Comment {
+model Comments {
   id        String   @id @default(uuid())
   content   String
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Posts    @relation(fields: [postId], references: [id])
   postId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      Users    @relation(fields: [userId], references: [id])
   userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -1,11 +1,11 @@
 import { FastifyInstance } from "fastify";
-import { UserCreate } from "../interfaces/User.interface";
-import { UserUseCase } from "../usecases/user.usecase";
+import { UsersCreate } from "../interfaces/Users.interface";
+import { UsersUseCase } from "../usecases/users.usecase";
 
-export async function userRoutes(fastify: FastifyInstance) {
-  const userUseCase = new UserUseCase();
+export async function usersRoutes(fastify: FastifyInstance) {
+  const usersUseCase = new UsersUseCase();
 
-  fastify.post<{ Body: UserCreate }>("/", async (request, reply) => {
+  fastify.post<{ Body: UsersCreate }>("/", async (request, reply) => {
     const { name, email, password, phone } = request.body;
 
     console.log("routes", request.body);
@@ -13,7 +13,7 @@ export async function userRoutes(fastify: FastifyInstance) {
     console.log(request.body);
 
     try {
-      const data = await userUseCase.create({
+      const data = await usersUseCase.create({
         name,
         email,
         password,
@@ -32,7 +32,7 @@ export async function userRoutes(fastify: FastifyInstance) {
       const { email } = request.params;
 
       try {
-        const data = await userUseCase.findByEmail(email);
+        const data = await usersUseCase.findByEmail(email);
 
         return reply.code(201).send(data);
       } catch (error) {
@@ -47,7 +47,7 @@ export async function userRoutes(fastify: FastifyInstance) {
       const { email, password } = request.body;
 
       try {
-        const data = await userUseCase.login(email, password);
+        const data = await usersUseCase.login(email, password);
 
         return reply.code(201).send(data);
       } catch (error) {

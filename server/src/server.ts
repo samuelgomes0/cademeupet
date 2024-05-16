@@ -1,19 +1,17 @@
 import cors from "@fastify/cors";
 import fastify, { FastifyInstance } from "fastify";
 
-import { petRoutes } from "./routes/pet.routes";
-import { postRoutes } from "./routes/post.routes";
-import { userRoutes } from "./routes/user.routes";
+import { postsRoutes } from "./routes/posts.routes";
+import { usersRoutes } from "./routes/users.routes";
 
-const server: FastifyInstance = fastify();
+const server: FastifyInstance = fastify({ logger: true });
 
 server.register(cors, {
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
 });
 
-server.register(userRoutes, { prefix: "/users" });
-server.register(petRoutes, { prefix: "/pets" });
-server.register(postRoutes, { prefix: "/posts" });
+server.register(usersRoutes, { prefix: "/users" });
+server.register(postsRoutes, { prefix: "/posts" });
 
 export default server;

@@ -1,4 +1,4 @@
-export interface User {
+export interface Users {
   id: string;
   email: string;
   password: string;
@@ -10,15 +10,15 @@ export interface User {
   updatedAt: Date;
 }
 
-export interface UserCreate {
+export interface UsersCreate {
   email: string;
   password: string;
   name: string;
   phone?: string;
 }
 
-export interface UserRepository {
-  create(user: UserCreate): Promise<User>;
-  findByEmail(email: string): Promise<User | null>;
-  login(email: string, password: string): Promise<User | null>;
+export interface UsersRepository {
+  create(user: UsersCreate): Promise<Users>;
+  findByEmail(email: string): Promise<Users | null>;
+  login(email: string, password: string): Promise<Users | null>;
 }
