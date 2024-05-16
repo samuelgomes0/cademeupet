@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { findAll } from "../../services";
+import { normalizeString } from "../../utils/normalizeString";
 import { ButtonPrimary } from "../ButtonPrimary";
 import { PetCard } from "../PetCard";
 import { Spinner } from "../Spinner";
@@ -27,13 +28,19 @@ export function LostAndFound({ searchTerm }) {
 
   useEffect(() => {
     if (searchTerm) {
+      setIsLoading(true);
+      const normalizedSearchTerm = normalizeString(searchTerm);
+
       const filtered = posts.filter((post) =>
-        post.pet.name.toLowerCase().includes(searchTerm.toLowerCase()),
+        normalizeString(post.name).includes(normalizedSearchTerm),
       );
+
       setFilteredPosts(filtered);
     } else {
       setFilteredPosts(posts);
     }
+
+    setIsLoading(false);
   }, [searchTerm, posts]);
 
   return (

@@ -1,6 +1,11 @@
 import axios from "axios";
 
 export async function findByPetName(name) {
+  if (!name) {
+    console.error("Pet name is required");
+    return null;
+  }
+
   const options = {
     method: "GET",
     url: `${import.meta.env.VITE_API_URL}/posts`,
@@ -17,7 +22,7 @@ export async function findByPetName(name) {
     const response = await axios.request(options);
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching posts by pet name:", error);
     return null;
   }
 }
